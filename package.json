@@ -1,0 +1,23 @@
+{
+  "name": "seat-booker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Valborg1/seat-booker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Valborg1/seat-booker/issues"
+  },
+  "homepage": "https://github.com/Valborg1/seat-booker#readme",
+  "devDependencies": {
+    "eslint": "^7.15.0"
+  }
+}
