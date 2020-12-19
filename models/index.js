@@ -4,28 +4,41 @@ const Showing = require('./Showing');
 const Seat = require('./Seat');
 const Ticket = require('./Ticket');
 
-User.hasMany(Post, {
-  foreignKey: 'user_id',
+Production.hasMany(Showing, {
+  foreignKey: 'production_id',
 });
 
-User.hasMany(Comment, {
-  foreignKey: 'post_id',
+  Showing.belongsTo(Production, {
+    foreignKey: 'production_id',
+  });
+
+Showing.hasMany(Seat, {
+  foreignKey: 'showing_id',
 });
 
-Post.hasMany(Comment, {
-  foreignKey: 'post_id',
+  Seat.belongsToMany(Showing, {
+    foreignKey: 'showing_id',
+  });
+
+// Ticket
+Ticket.belongsTo(User, {
+  foreignKey: 'user_id'
 });
 
-Post.belongsTo(User, {
-  foreignKey: 'user_id',
+Ticket.belongsTo(Production, {
+  foreignKey: 'production_id'
 });
 
-Comment.belongsTo(User, {
-  foreignKey: 'user_id',
+Ticket.belongsTo(Showing, {
+  foreignKey: 'showing_id'
 });
 
-Comment.belongsTo(Post, {
-  foreignKey: 'post_id',
+Ticket.belongsTo(Seat, {
+  foreignKey: 'seat_id'
 });
 
-module.exports = { User, Post, Comment };
+User.hasMany(Ticket, {
+  foreignKey: 'ticket_id'
+});
+
+module.exports = { User, Production, Showing, Seat, Ticket };
