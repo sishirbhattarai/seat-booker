@@ -6,6 +6,7 @@ const Ticket = require('./Ticket');
 
 Production.hasMany(Showing, {
   foreignKey: 'production_id',
+  as: 'showing_production_id'
 });
 
   Showing.belongsTo(Production, {
@@ -14,11 +15,14 @@ Production.hasMany(Showing, {
 
 Showing.hasMany(Seat, {
   foreignKey: 'showing_id',
+  as: 'seat_showing_id'
 });
 
-  Seat.belongsToMany(Showing, {
-    foreignKey: 'showing_id',
-  });
+  // Seat.belongsToMany(Showing, {
+  //   through: Ticket,
+  //   as: 'showing_seat_id',
+  //   foreignKey: 'showing_id',
+  // });
 
 // Ticket
 Ticket.belongsTo(User, {
@@ -26,11 +30,11 @@ Ticket.belongsTo(User, {
 });
 
 Ticket.belongsTo(Production, {
-  foreignKey: 'production_id'
+  // foreignKey: 'production_id'
 });
 
 Ticket.belongsTo(Showing, {
-  foreignKey: 'showing_id'
+  // foreignKey: 'showing_id'
 });
 
 Ticket.belongsTo(Seat, {
