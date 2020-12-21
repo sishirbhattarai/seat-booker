@@ -35,5 +35,9 @@ Ticket.belongsTo(Seat, {
   foreignKey: 'seat_id'
 });
 
+User.hasMany(Ticket, {
+  foreignKey: 'user_id'
+});
+
 
 module.exports = { User, Production, Showing, Seat, Ticket };
