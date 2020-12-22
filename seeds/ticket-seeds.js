@@ -3,7 +3,6 @@ const { Ticket } = require('../models');
 const ticketData = [
   {
     user_id: 1,
-    production_id: 1,
     showing_id: 1,
     seat_id: 1,
     in_cart: false,
@@ -11,7 +10,6 @@ const ticketData = [
   },
   {
     user_id: 1,
-    production_id: 2,
     showing_id: 4,
     seat_id: 2,
     in_cart: false,
@@ -19,7 +17,6 @@ const ticketData = [
   },
   {
     user_id: 2,
-    production_id: 1,
     showing_id: 2,
     seat_id: 3,
     in_cart: false,

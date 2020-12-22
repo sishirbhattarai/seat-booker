@@ -3,6 +3,7 @@ const seedProductions = require('./production-seeds');
 const seedShowings = require('./showing-seeds');
 const seedSeats = require('./seat-seeds');
 const seedTickets = require('./ticket-seeds');
+const seedCarts = require('./cart-seeds');
 
 const sequelize = require('../config/connection');
 
@@ -25,6 +26,9 @@ const seedAll = async () => {
 
   await seedTickets();
   console.log('\n----- TICKETS SEEDED -----\n');
+
+  await seedCarts();
+  console.log('\n----- CARTS SEEDED -----\n');
 
   process.exit(0);
 };

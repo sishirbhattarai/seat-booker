@@ -9,6 +9,13 @@ const seatData = [
     available: false,
   },
   {
+    row: "A",
+    number: 5,
+    price: 60.45,
+    showing_id: 2,
+    available: false,
+  },
+  {
     row: "B",
     number: 4,
     price: 50.45,

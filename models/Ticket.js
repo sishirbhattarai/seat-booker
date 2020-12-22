@@ -19,13 +19,6 @@ Ticket.init(
         key: 'id'
       }
     },
-    production_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'production',
-        key: 'id'
-      }
-    },
     showing_id: {
       type: DataTypes.INTEGER,
       references: {

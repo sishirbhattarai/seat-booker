@@ -10,7 +10,6 @@ router.get('/', async (req, res) => {
         include: [Seat, Ticket]
       }]
     })
-    console.log("Production Daeta", productionData)
     res.status(200).json(productionData)
   } catch (err) {
     res.status(500).json(err)
@@ -56,6 +55,14 @@ router.get('/login', (req, res) => {
     return;
   } 
   res.render('login');
+});
+
+router.get('/signup', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/profile');
+    return;
+  } 
+  res.render('signup');
 });
 
 module.exports = router;

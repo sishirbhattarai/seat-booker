@@ -16,6 +16,10 @@ Showing.hasMany(Seat, {
   foreignKey: 'showing_id',
 });
 
+Seat.belongsTo(Showing, {
+  foreignKey: 'showing_id'
+})
+
 Showing.hasMany(Ticket, {
   foreignKey: 'showing_id',
 });
