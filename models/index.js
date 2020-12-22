@@ -3,6 +3,7 @@ const Production = require('./Production');
 const Showing = require('./Showing');
 const Seat = require('./Seat');
 const Ticket = require('./Ticket');
+const Cart = require('./Cart');
 
 Production.hasMany(Showing, {
   foreignKey: 'production_id',
@@ -44,4 +45,4 @@ User.hasMany(Ticket, {
 });
 
 
-module.exports = { User, Production, Showing, Seat, Ticket };
+module.exports = { User, Production, Showing, Seat, Ticket, Cart };
