@@ -12,8 +12,20 @@ Showing.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    date: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     time: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    month: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    day: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     production_id: {

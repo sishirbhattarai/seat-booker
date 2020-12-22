@@ -1,21 +1,60 @@
+<section class="container">
 <div class="row">
-  <div class="col-auto">
-    <h2>Welcome, {{name}}!</h2>
+  <div class="col-md-6">
+    <h1>Welcome, {{name}}!</h1>
+    <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Your Info</h5>
+    <p class="card-text"><b>Name: </b>{{name}}</p>
+    <p class="card-text"><b>Email: </b>{{email}}</p>
+    <a href="#" class="card-link">Update My Info</a>
   </div>
 </div>
+</div>
 
-  {{#if tickets.length}}
-  <div class="col-md-6 project-list">
-    <h3>Current Tickets:</h3>
+{{#if tickets.length}}
 
-    {{#each tickets as |ticket|}}
-    <h2>Production Name: {{ticket.showing.production.title}}</h2>
-    <h2>Show Time: {{ticket.showing.time}}</h2>
-    <h2>Seat Row: {{ticket.seat.row}}</h2>
-    <h2>Seat Number: {{ticket.seat.number}}</h2>
+  <div class="col-md-6">
+  <h1>Tickets</h1>
+
+{{#each tickets as |ticket|}}
+
+<div class="row">
+    <article class="card ticket fl-left">
+      <section class="date">
+        <time datetime={{ticket.showing.time}}>
+          <span>{{ticket.showing.day}}</span><span>{{ticket.showing.month}}</span>
+        </time>
+      </section>
+      <section class="card-cont">
+        <small>SeatBooker Theaters Presents</small>
+        <h3>{{ticket.showing.production.title}}</h3>
+        <div class="even-date">
+         <i class="fa fa-calendar"></i>
+         <time>
+           <span>{{ticket.showing.date}}</span>
+           <span>{{ticket.showing.time}}</span>
+         </time>
+        </div>
+        <div class="even-info">
+          <i class="fa fa-map-marker"></i>
+          <p>
+            The Seatbooker Theater 9900 S Monroe St, Sandy, UT 84070
+          </p>
+        </div>
+        <a href="#">tickets</a>
+      </section>
+    </article>
+  </div>
+
+
     {{/each}}
+    {{!-- End of ticket columns --}}
   </div>
-  {{/if}}
+{{!-- End of main row--}}
+  </div> 
 </div>
+{{/if}}
+
 
 <script src="./js/profile.js"></script>
