@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
     try {
         const userData = await User.findAll({
             include: [{
-                model: Ticket,
+                model: Ticket, 
                 include: [Seat, {model: Showing, include: Production}]
             }]
         })

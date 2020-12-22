@@ -9,12 +9,12 @@ body {
   font-weight: bold;
 }
 
-a {
+/* a {
   font-family: cursive;;
   font-size: 1.5rem; 
-}
+} */
 
-#signup{
+/* #signup{
   margin-top: 0.89rem;
   margin-right: 1rem;
   color: black;
@@ -22,7 +22,7 @@ a {
 
 #cart{
   color: black;
-}
+} */
 
 
 footer {
@@ -42,14 +42,14 @@ footer {
   }
 
 
-  .fa {
+  /* .fa {
     padding: 8px;
     font-size: 30px;
     width: 50px;
     text-align: center;
     margin-top: 0.7rem;
     text-decoration: none;
-  }
+  } */
   
  
   .fa-facebook {

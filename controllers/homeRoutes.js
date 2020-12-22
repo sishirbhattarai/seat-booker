@@ -10,7 +10,12 @@ router.get('/', async (req, res) => {
         include: [Seat, Ticket]
       }]
     })
-    res.status(200).json(productionData)
+    res.render('homepage', { 
+      // projects, 
+      logged_in: req.session.logged_in 
+    });
+
+    // res.status(200).json(productionData)
   } catch (err) {
     res.status(500).json(err)
   }  
@@ -33,17 +38,19 @@ router.get('/production/:id', async (req, res) => {
 router.get('/profile', async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
-      attributes: {
-        exclude: ["password"]
-      },
-      include: [{
-        model: Ticket
+      attributes: { exclude: ["password"] },
+      include: [{model: Ticket,
+        include: [Seat, {model: Showing, include: Production}]
       }],
-    }) 
+    });
+    
+    const user = userData.get({ plain: true });
+
     res.render('profile', {
       ...user,
       logged_in: true
     })
+    // console.log("User Data", userData)
   } catch (err) {
     res.status(500).json(err)
   }
