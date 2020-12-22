@@ -1,0 +1,114 @@
+body {
+  background-color: #cccccc;
+}
+
+#title {
+  font-size: 1.8rem;
+  color: rgba(223, 10, 10, 0.795);
+  font-family: cursive;
+  font-weight: bold;
+}
+
+a {
+  font-family: cursive;
+  font-size: 1.5rem;
+}
+
+#signup {
+  margin-top: 0.89rem;
+  margin-right: 1rem;
+  color: black;
+}
+
+#cart {
+  color: black;
+}
+
+h1 {
+    margin-bottom: 2rem;
+}
+
+#newAccount {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+footer {
+  position: fixed;
+  font-size: 0.1rem;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #f8f9fa;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: rgba(223, 10, 10, 0.795);
+  text-align: center;
+}
+
+.fa {
+  padding: 8px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  margin-top: 0.7rem;
+  text-decoration: none;
+}
+
+.fa-facebook {
+  background: #3b5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55acee;
+  color: white;
+}
+
+.fa-youtube {
+  background: rgb(236, 10, 10);
+  color: white;
+}
+
+.fa-shopping-cart {
+  margin-bottom: 1.5rem;
+}
+
+form {
+  border: 3px solid #f1f1f1;
+  font-family: cursive;
+  background-color: rgb(223, 150, 98);
+  
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+
+button:hover {
+  opacity: 0.5;
+}
+
+.container {
+  padding: 16px;
+  margin-bottom: 4rem;
+  margin-top: 2rem;
+
+}
+

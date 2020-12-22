@@ -1,0 +1,72 @@
+body {
+    background-color: #cccccc;
+}
+
+#title {
+  font-size: 1.8rem;
+  color: rgba(223, 10, 10, 0.795);
+  font-family: cursive;
+  font-weight: bold;
+}
+
+a {
+  font-family: cursive;;
+  font-size: 1.5rem; 
+}
+
+#signup{
+  margin-top: 0.89rem;
+  margin-right: 1rem;
+  color: black;
+}
+
+#cart{
+  color: black;
+}
+
+
+footer {
+  position: fixed;
+  font-size: 0.1rem;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color:#f8f9fa;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: rgba(223, 10, 10, 0.795);
+  text-align: center;
+  }
+
+  h2 {
+    font-size: 0.9rem;
+  }
+
+
+  .fa {
+    padding: 8px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    margin-top: 0.7rem;
+    text-decoration: none;
+  }
+  
+ 
+  .fa-facebook {
+    background: #3B5998;
+    color: white;
+  }
+  
+  .fa-twitter {
+    background: #55ACEE;
+    color: white;
+  }
+
+  .fa-youtube {
+    background:rgb(236, 10, 10);
+    color: white;
+  }
+
+  .fa-shopping-cart {
+    margin-bottom: 1.5rem;
+  }
