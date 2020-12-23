@@ -74,6 +74,7 @@ footer {
   /* TEST */
 
   @import url('https://fonts.googleapis.com/css?family=Oswald');
+
 *
 {
   margin: 0;
@@ -207,6 +208,7 @@ h1
 
 .card-cont .even-date i,
 .card-cont .even-info i,
+.card-cont .even-seat i,
 .card-cont .even-date time,
 .card-cont .even-info p
 {
@@ -214,12 +216,18 @@ h1
 }
 
 .card-cont .even-date i,
-.card-cont .even-info i
+.card-cont .even-info i,
+.card-cont .even-seat i
 {
   padding: 5% 5% 0 0
 }
 
 .card-cont .even-info p
+{
+  padding: 15px 50px 0 0
+}
+
+.even-seat
 {
   padding: 30px 50px 0 0
 }
@@ -245,11 +253,6 @@ h1
   bottom: 10px
 }
 
-/* .row:last-child .card:first-child .card-cont a
-{
-  background-color: #037FDD
-} */
-
 .card-cont a
 {
   background-color: #F8504C
@@ -268,7 +271,8 @@ h1
   .card + .card{margin-left: 0}
   
   .card-cont .even-date,
-  .card-cont .even-info
+  .card-cont .even-info,
+  .card-cont .even-seat
   {
     font-size: 75%
   }

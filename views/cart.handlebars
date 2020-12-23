@@ -1,13 +1,13 @@
 <section class="container">
 <div class="row">
   <div class="col-md-6">
-    <h1>Welcome, {{name}}!</h1>
+    <h1>Complete My Purhcase</h1>
     <div class="card" style="width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title">Your Info</h5>
+    <h5 class="card-title">Time Remaining</h5>
     <p class="card-text"><b>Name: </b>{{name}}</p>
     <p class="card-text"><b>Email: </b>{{email}}</p>
-    <a href="#" class="card-link">Update My Info</a>
+    <a href="#" class="card-link">Complete My Purchase</a>
   </div>
 </div>
 </div>
@@ -15,10 +15,10 @@
 {{#if tickets.length}}
 
   <div class="col-md-6">
-  <h1>Tickets</h1>
+  <h1>Your Cart</h1>
 
 {{#each tickets as |ticket|}}
-{{#if ticket.purchased}}
+{{#if ticket.in_cart}}
 
 <div class="row">
     <article class="card ticket fl-left">
@@ -47,7 +47,7 @@
             The Seatbooker Theater 9900 S Monroe St, Sandy, UT 84070
           </p>
         </div>
-        <a href="#">tickets</a>
+        {{!-- <a href="#">tickets</a> --}}
       </section>
     </article>
   </div>
@@ -61,4 +61,43 @@
 </div>
 {{/if}}
 
+{{#each tickets as |ticket|}}
+{{!-- console.log({{ticketData}}) --}}
+{{/each}}
+
+
+
 <script src="./js/profile.js"></script>
+
+<script>
+
+  function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
+
+
+window.onload = function () {
+    var fiveMinutes = 60 * 5,
+        display = document.querySelector('#time');
+        
+    startTimer(fiveMinutes, display);
+};
+</script>
+
+<body>
+    <div id="test">Registration closes in <span id="time">05:00</span> minutes!</div>
+</body>

@@ -51,7 +51,7 @@
         <h1>Please pick your seats</h1>       
         <div class="container">
             <div class="row" id="row1">
-                <div class="column c1">	
+                <div id="section1" class="column c1">	
                     <a>A 1</a>
                     <a>A 2</a>
                     <a>A 3</a>
@@ -61,8 +61,32 @@
                     <a>A 7</a>
                     <a>A 8</a>
                     <a>A 9</a>
+                    <a>A 10</a>
+                    <a>A 11</a>
+                    <a>A 12</a>
+                    <a>A 13</a>
+                    <a>A 14</a>
+                    <a>A 15</a>
+                    <a>A 16</a>
+                    <a>A 17</a>
+                    <a>A 18</a>
+                    <a>A 13</a>
+                    <a>A 14</a>
+                    <a>A 15</a>
+                    <a>A 16</a>
+                    <a>A 17</a>
+                    <a>A 18</a>
                 </div>
-                <div class="column c2">
+                <div id="section2" class="column c2">
+                    <a>B 1</a>
+                    <a>B 2</a>
+                    <a>B 3</a>
+                    <a>B 4</a>
+                    <a>B 5</a>
+                    <a>B 6</a>
+                    <a>B 7</a>
+                    <a>B 8</a>
+                    <a>B 9</a>
                     <a>B 10</a>
                     <a>B 11</a>
                     <a>B 12</a>
@@ -72,30 +96,6 @@
                     <a>B 16</a>
                     <a>B 17</a>
                     <a>B 18</a>
-                </div>
-            </div>
-            <div class="row" id="row1">
-                <div class="column c1">
-                    <a>A 19</a>
-                    <a>A 20</a>
-                    <a>A 21</a>
-                    <a>A 22</a>
-                    <a>A 23</a>
-                    <a>A 24</a>
-                    <a>A 25</a>
-                    <a>A 26</a>
-                    <a>A 27</a>
-            </div>
-                <div class="column c2">
-                    <a>B 28</a>
-                    <a>B 29</a>
-                    <a>B 30</a>
-                    <a>B 31</a>
-                    <a>B 32</a>
-                    <a>B 33</a>
-                    <a>B 34</a>
-                    <a>B 35</a>
-                    <a>B 36</a>
                 </div>
             </div>
             </div>   
@@ -111,6 +111,25 @@
         <a class="fa fa-youtube"></a>
       </h2>
     </footer>
+
+
+<script>
+
+    const number = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
+    const section1 = document.getElementById('section1');
+
+  for (var j = 0; j < number.length; j++) {
+    console.log(number[j]);
+
+    const a = document.createElement("a")
+    const text = `B ${number[j]}`;
+
+    a.append(text);
+
+    section1.append(a);
+  }
+
+    </script>
 
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

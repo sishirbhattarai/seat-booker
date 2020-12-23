@@ -12,8 +12,8 @@ const ticketData = [
     user_id: 1,
     showing_id: 4,
     seat_id: 2,
-    in_cart: false,
-    purchased: true,
+    in_cart: true,
+    purchased: false,
   },
   {
     user_id: 2,

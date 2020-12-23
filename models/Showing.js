@@ -16,7 +16,11 @@ Showing.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    time: {
+    startTime: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    endTime: {
       type: DataTypes.STRING,
       allowNull: false,
     },

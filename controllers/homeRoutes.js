@@ -46,6 +46,8 @@ router.get('/profile', async (req, res) => {
     
     const user = userData.get({ plain: true });
 
+    // console.log("user info", user)
+
     res.render('profile', {
       ...user,
       logged_in: true
@@ -62,15 +64,27 @@ router.get('/cart', async (req, res) => {
       attributes: {
         exclude: ["password"]
       },
-      include: [{
-        model: Cart,
-        include: Ticket,
+      include: [{model: Ticket,
         include: [Seat, {model: Showing, include: Production}]
-    }],
-    }) 
+      }],
+    }); 
+
+    const ticketData = await Ticket.findOne({
+      attributes: [
+        [sequelize.fn('MAX', sequelize.col('created_at'))]],
+    group: ['id'],
+    // raw: true,
+});
+
+
+    const user = userData.get({ plain: true })
+
+    console.log(JSON.stringify(ticketData))
+
     res.render('cart', {
       ...user,
-      logged_in: true
+      logged_in: true,
+      // ticketData,
     })
   } catch (err) {
     res.status(500).json(err)
