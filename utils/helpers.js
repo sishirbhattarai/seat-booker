@@ -5,9 +5,9 @@ module.exports = {
   },
 
   format_time: (date) => {
-    var futureTime = new Date(date.getTime() + 15 * 60000).toLocaleString();
-    var currentTime = date.toLocaleString();
-    return // futureTime - CurrentTime;
+    var futureTime = new Date(date.getTime() + 15 * 60000).getTime();
+    var currentTime = new Date().getTime();
+    return Math.round((futureTime - currentTime) / 60000)
   },  
 
 
