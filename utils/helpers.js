@@ -4,10 +4,13 @@ module.exports = {
             ${new Date(date).getHours()}:${new Date(date).getMinutes()}`;
   },
 
-  format_amount: (amount) => {
-    // format large numbers with commas
-    return parseInt(amount).toLocaleString();
-  },
+  format_time: (date) => {
+    var futureTime = new Date(date.getTime() + 15 * 60000).toLocaleString();
+    var currentTime = date.toLocaleString();
+    return // futureTime - CurrentTime;
+  },  
+
+
   get_emoji: () => {
     const randomNum = Math.random();
 

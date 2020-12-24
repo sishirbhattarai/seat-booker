@@ -58,6 +58,7 @@ router.get('/profile', async (req, res) => {
   }
 });
 
+
 router.get('/cart', async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
@@ -69,23 +70,33 @@ router.get('/cart', async (req, res) => {
       }],
     }); 
 
-    const ticketData = await Ticket.findOne({
-      attributes: [
-        [sequelize.fn('MAX', sequelize.col('created_at'))]],
-    group: ['id'],
-    // raw: true,
-});
 
+    const data = await Ticket.findOne({
+      where: { user_id: req.session.user_id },
+      order: [ [ 'createdAt', 'DESC' ]],
+    });
+    // await oldestCartItem();
 
     const user = userData.get({ plain: true })
 
-    console.log(JSON.stringify(ticketData))
-
     res.render('cart', {
       ...user,
+      createdAt: data.createdAt,
       logged_in: true,
-      // ticketData,
     })
+  } catch (err) {
+    res.status(500).json(err)
+  }
+});
+
+
+router.get('/test', async (req, res) => {
+  try {
+    const data = await Ticket.findOne({
+    where: { user_id: req.session.user_id },
+    order: [ [ 'createdAt', 'DESC' ]],
+    });
+    res.json(data.createdAt)
   } catch (err) {
     res.status(500).json(err)
   }
