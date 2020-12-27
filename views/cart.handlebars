@@ -89,29 +89,6 @@
     }, 1000);
 }
 
-  function setTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.textContent = minutes + ":" + seconds;
-
-        if (--timer < 0) {
-            timer = duration;
-            display.textContent = "00:00"
-        }
-}
-
-window.onload = function () {
-    var time = {{format_time createdAt}},
-        display = document.querySelector('#cartTimer');
-        
-    setTimer(time, display);
-};
-
 window.onload = function () {
     var time = {{format_time createdAt}},
         display = document.querySelector('#cartTimer');
