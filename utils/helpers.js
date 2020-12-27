@@ -7,9 +7,23 @@ module.exports = {
   format_time: (date) => {
     var futureTime = new Date(date.getTime() + 15 * 60000).getTime();
     var currentTime = new Date().getTime();
-    return Math.round((futureTime - currentTime) / 60000)
-  },  
+    return Math.round((futureTime - currentTime) / 60000 * 60)
+  },
+  
+  set_time: (date) => {
+    var futureTime = new Date(date.getTime() + 15 * 60000).getTime();
+    var currentTime = new Date().getTime();
+    var remainingTime = Math.round((futureTime - currentTime) / 60000 * 60)
 
+    var timer = remainingTime, minutes, seconds;
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        return minutes + ":" + seconds;
+  }, 
 
   get_emoji: () => {
     const randomNum = Math.random();
