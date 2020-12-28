@@ -1,0 +1,18 @@
+<section class="container">
+
+<div class="row">
+{{#each productionData as |production|}}
+
+  <div class="column">
+    {{!-- <h1>{{dataValues.title}}</h1> --}}
+
+      <a href="">
+      <img src="{{dataValues.img}}">
+      <p id="productionInfo">{{dataValues.startDate}} - {{dataValues.endDate}}</p>
+      </a>
+  </div>
+{{/each}}
+</div>
+
+
+{{!-- width="100%" height="475" --}}

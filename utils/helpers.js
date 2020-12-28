@@ -22,7 +22,12 @@ module.exports = {
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        return minutes + ":" + seconds;
+        if (remainingTime > 0) {
+          return minutes + ":" + seconds;
+        } else {
+          return "00:00";
+        }
+        
   }, 
 
   get_emoji: () => {

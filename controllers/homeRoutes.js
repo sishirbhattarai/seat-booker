@@ -8,10 +8,14 @@ router.get('/', async (req, res) => {
       include: [{
         model: Showing,
         include: [Seat, Ticket]
-      }]
-    })
-    res.render('homepage', { 
-      // projects, 
+      }],
+    });
+    console.log("production data", productionData)
+    // const production = productionData.get({ plain: true });
+    
+
+    res.render('production', { 
+      productionData, 
       logged_in: req.session.logged_in 
     });
 
@@ -44,15 +48,13 @@ router.get('/profile', async (req, res) => {
       }],
     });
     
+    // console.log("user data", userData);
     const user = userData.get({ plain: true });
-
-    // console.log("user info", user)
 
     res.render('profile', {
       ...user,
       logged_in: true
     })
-    // console.log("User Data", userData)
   } catch (err) {
     res.status(500).json(err)
   }
