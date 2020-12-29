@@ -30,6 +30,19 @@ module.exports = {
         
   }, 
 
+  get_array: (data) => {
+    const showingsData = data.dataValues.showings
+    // [0].date 
+    var array = []
+
+    for (var i = 0; i < showingsData.length; i++) {
+      x = showingsData[i].date;
+      array.push(x);
+    }
+
+    return array
+  },
+
   get_emoji: () => {
     const randomNum = Math.random();
 
