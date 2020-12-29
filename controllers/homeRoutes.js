@@ -48,12 +48,12 @@ router.get('/production/:id', async (req, res) => {
       }],
     });
     
-    // const production = userData.get({ plain: true });
+    const production = productionData.get({ plain: true });
 
-    console.log(productionData)
+    console.log(production)
 
     res.render('showing', { 
-      productionData, 
+      ...production, 
       logged_in: req.session.logged_in 
     });
   } catch (err) {

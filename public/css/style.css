@@ -190,6 +190,11 @@ h1
   position: relative
 }
 
+.showing {
+  width: 50vw;
+  min-width: 300px;
+}
+
 .card + .card{margin-left: 2%}
 
 .date
@@ -199,6 +204,19 @@ h1
   position: relative;
   text-align: center;
   border-right: 2px dashed #dadde6
+}
+
+.date-showing
+{
+  display: table-cell;
+  width: 100px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: -10px
+  
+  /* border-right: 2px dashed #dadde6 */
 }
 
 .date:before,
@@ -222,6 +240,12 @@ h1
   bottom: -15px
 }
 
+.date-showing:after
+{
+  top: auto;
+  bottom: -15px
+}
+
 .date time
 {
   display: block;
@@ -233,7 +257,20 @@ h1
   transform: translate(-50%, -50%)
 }
 
+.date-showing time
+{
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 .date time span{display: block}
+
+.date-showing time span{display: block}
 
 .date time span:first-child
 {
@@ -242,7 +279,21 @@ h1
   font-size: 250%
 }
 
+.date-showing time span:first-child
+{
+  color: #2b2b2b;
+  font-weight: 600;
+  font-size: 250%
+}
+
 .date time span:last-child
+{
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: -10px
+}
+
+.date-showing time span:last-child
 {
   text-transform: uppercase;
   font-weight: 600;

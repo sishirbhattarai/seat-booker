@@ -1,20 +1,36 @@
 <section class="container">
 
+
+
+<h1>{{title}}</h1>
+
+{{#each showings as |showing|}}
 <div class="row">
-{{!-- {{#each productionData.showings as |production|}}
-<p>{{id}}</p>
-{{/each}} --}}
+    <article class="card ticket showing fl-left">
+      <section class="date-showing">
+        <time>
+          <span>{{day}}</span><span>{{month}}</span>
+        </time>
+      </section>
+      <section class="card-cont">
+        <small>SeatBooker Theaters</small>
+        {{!-- <h3>AAA</h3> --}}
+        <div class="even-date">
+         <i class="fa fa-calendar" style="padding-right: 15px"></i>
+         <time>
+           <span>{{date}}</span>
+           <span>{{startTime}} to {{endTime}}</span>
+         </time>
+        </div>
+        <div class="even-seat">
+          <a href="#" data-id="{{id}}">Seats</a>
+        </div>
 
-<p>{{get_array productionData}}</p>
-{{#each get_array}}
+      </section>
+    </article>
+  </div>
 
-<p>{{date}}</p>
-
-{{/each}}
-
-</div>
-
-
+  {{/each}}
 
 
 
