@@ -3,7 +3,6 @@ const Production = require('./Production');
 const Showing = require('./Showing');
 const Seat = require('./Seat');
 const Ticket = require('./Ticket');
-const Cart = require('./Cart');
 const Order = require('./Order');
 
 Production.hasMany(Showing, {
@@ -45,4 +44,4 @@ User.hasMany(Ticket, {
 });
 
 
-module.exports = { User, Production, Showing, Seat, Ticket, Cart, Order };
+module.exports = { User, Production, Showing, Seat, Ticket, Order };

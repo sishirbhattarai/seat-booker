@@ -14,12 +14,12 @@ body {
   margin: 0;
 }
 
-* {
+/* * {
 	font-family: "Montserrat", sans-serif !important;
   box-sizing: border-box;
-}
+} */
 
-.movie-container {
+/* .movie-container {
   margin: 20px 0px;
   display: flex;
   justify-content: center;
@@ -36,7 +36,7 @@ body {
   margin-bottom: 40px;
   font-size: 14px;
   border-radius: 5px;
-}
+} */
 
 .container {
   perspective: 1000px;
@@ -114,7 +114,9 @@ body {
   height: 50px;
   width: 70%;
   margin: 15px 0;
-  /* transform: rotateX(-45deg); */
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  transform: rotateX(15deg);
   /* box-shadow: 0 3px 10px rgba(255,255,255,0.7); */
 }
 
