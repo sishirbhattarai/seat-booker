@@ -1,5 +1,3 @@
-// const { eq } = require("sequelize/types/lib/operators");
-
 const container = document.querySelector('.container');
 const seats = document.querySelectorAll('.row .seat:not(.occupied)');
 const count = document.getElementById('count');
@@ -18,7 +16,7 @@ function updateSelectedCount() {
 
 function checkoutBtn() {
   const checkout = $('.initiate-checkout')
-  const btn = `<button class="btn btn-primary btn-block">Proceed to Checkout</button>`
+  const btn = `<button id="checkout-btn" class="btn btn-primary btn-block">Proceed to Checkout</button>`
   checkout.text("")
   const seatCount = $('#count').text()
   console.log("seatCount", seatCount)
@@ -43,9 +41,6 @@ container.addEventListener('click', e => {
 });
 
 
-
-
-
 $(".seat").on('click', function (e) {
   e.preventDefault();
 
@@ -59,7 +54,7 @@ $(".seat").on('click', function (e) {
 
   if (x === "seat selected") {
     $('#stub-'+id).remove();
-  } else {
+  } else if (x === "seat") {
 
 
   const info = 
@@ -68,7 +63,7 @@ $(".seat").on('click', function (e) {
   <article class="card ticket fl-left seat-selection">
      <section class="date-showing">
       <time>
-        <span class="seat-info-bold">${row}${seat}</span>
+        <span class="row-info">${row}</span><span class="seat-info">${seat}</span>
       </time>
     </section>
     <section class="card-cont">
@@ -87,86 +82,72 @@ $(".seat").on('click', function (e) {
   </div>`
 
   stubs.append(info)
+  } else {
+    return;
   }
+});
 
-    // $('#stub-'+id).remove();
+var rowArr
+var seatArr
+var priceArr
 
-    // const arr = []
-    // const x = stubs.children()
-    // arr.push(x)
-  
-    // const y = stubs.children().attr('id')
-
-    // for (var i = 0; i < arr.length; i++) {
-    //   console.log("id", arr[i].attr('id'))
-    //   console.log("array", arr)
-    // }
-
-
-
-
-})
-
-
-$(".seat").on('click', function (e) {
+$(".initiate-checkout").on('click', '#checkout-btn', function (e) {
   e.preventDefault();
 
-  x = $(this).attr('class')
-  console.log("x", x)
+  const children = $('.selected-seats').children().length
+  rowArr = []
+  seatArr = []
+  priceArr = []
 
-})
+  const row = $('.selected-seats').find('span.seat-info-bold').each(function () {  
+    rowArr.push($(this).text())
+    console.log(rowArr)
+  })
+
+  const seat = $('.selected-seats').find('span.seat-info').each(function () {  
+    seatArr.push($(this).text())
+    console.log(seatArr)
+  })
+
+  const price = $('.selected-seats').find('span.price-info').each(function () {  
+    priceArr.push($(this).text())
+    console.log(priceArr)
+  })
+
+
+
+});
+
+
+// const startCheckout = async(e) => {
+//   e.preventDefault();
+
+
+
+//   var row = 
+//   var number = 
+//   var price = 
+//   var showing_id = 
+
+//   const email = document.getElementById('email-login').value.trim();
+//   const password = document.getElementById('password-login').value.trim();
+
+
+//       const response = await fetch('/api/seat', {
+//           method: 'POST',
+//           body: JSON.stringify({row, number, price, showing_id}), 
+//           headers: {'Content-Type': 'application/json'}
+//       })
 
 
 
 
- 
-
-// const purchaseTickets = async(event) => {
-//   event.preventDefault();
-
-  // const email = document.getElementById('email-login').value.trim();
-  // const password = document.getElementById('password-login').value.trim();
-
-//   const response = await fetch('/api/seat/', {
-//       method: 'POST',
-//       body: JSON.stringify({user_id, showing_id, seat_id, in_cart, purchased}), 
-//       headers: {'Content-Type': 'application/json'}
-//   })
-
-//   if (response.ok) {
-//       document.location.replace('/profile')
-      
-//   } else {
-//       alert(response.statusText)
-//   }
-
+//       // if (response.ok) {
+//       //     document.location.replace('/profile')
+//       // }
 // };
 
 // document
 //   .getElementById('login-btn')
 //   .addEventListener('click', loginFormHandler)
 
-
-
-
-
-// <div class="row">
-// <article class="card ticket fl-left seat-selection">
-//    <section class="date-showing">
-//     <time>
-//       <span class="seat-info-bold">A7</span>
-//     </time>
-//   </section>
-//   <section class="card-cont">
-//     <small>SeatBooker Theaters Seating Info</small>
-//   <div class="even-seat">
-//       <i class="fa fa-star" style="padding-right: 15px"></i>
-//       <span class="seat-info">Seat: A7</span>
-//   </div>
-//     <div class="even-info">
-//       <i class="fa fa-dollar"></i>
-//       <span class="price-info">$70.00</span>
-//     </div>
-//   </section>
-// </article>
-// </div>
