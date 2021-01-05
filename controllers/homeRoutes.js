@@ -61,6 +61,28 @@ router.get('/production/:id', async (req, res) => {
   }
 });
 
+router.get('/showing/:id', async (req, res) => {
+  try {
+    const showingData = await Showing.findByPk(req.params.id, {
+      include: [{
+        model: Production,
+        // include: [Seat, Ticket]
+      }],
+    });
+    
+    const showing = showingData.get({ plain: true });
+
+    console.log(showing)
+
+    res.render('seat', { 
+      ...showing, 
+      logged_in: req.session.logged_in 
+    });
+  } catch (err) {
+    res.status(500).json(err)
+  }
+});
+
 router.get('/profile', async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {

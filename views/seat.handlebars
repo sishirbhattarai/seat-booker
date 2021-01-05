@@ -1,0 +1,146 @@
+  <div class="movie-container">
+  
+  <div class="row">
+  <div class="col-md-6">
+    <div class="container">
+
+<h1>{{production.title}}</h1>
+<p class="upper"> {{date}}</p>
+
+      <ul class="showcase">
+      <li>
+        <div class="seat"></div>
+        <small>Available</small>
+      </li>
+      <li>
+        <div class="seat selected-display"></div>
+        <small>Selected</small>
+      </li>
+      <li>
+        <div class="seat occupied"></div>
+        <small>Occupied</small>
+      </li>    
+    </ul>
+
+      <div class="screen"></div>
+        <div class="row justify-content-md-center">
+          <div id="123" class="seat" data-row="A" data-seat="1" data-price="$70.00"></div>
+          <div class="seat" data-row="A" data-seat="2" data-price="$70.00"></div>
+          <div class="seat" data-row="A" data-seat="3" data-price="$70.00"></div>
+          <div class="seat" data-row="A" data-seat="4" data-price="$70.00"></div>
+          <div class="seat" data-row="A" data-seat="5" data-price="$70.00"></div>
+          <div class="seat" data-row="A" data-seat="6" data-price="$70.00"></div>
+          <div class="seat" data-row="A" data-seat="7" data-price="$70.00"></div>
+          <div class="seat" data-row="A" data-seat="8" data-price="$70.00"></div>
+        </div>
+        <div class="row justify-content-md-center">
+          <div class="seat" data-row="B" data-seat="1" data-price="$65.00"></div>
+          <div class="seat" data-row="B" data-seat="2" data-price="$65.00"></div>
+          <div class="seat" data-row="B" data-seat="3" data-price="$65.00"></div>
+          <div class="seat" data-row="B" data-seat="4" data-price="$65.00"></div>
+          <div class="seat" data-row="B" data-seat="5" data-price="$65.00"></div>
+          <div class="seat" data-row="B" data-seat="6" data-price="$65.00"></div>
+          <div class="seat" data-row="B" data-seat="7" data-price="$65.00"></div>
+          <div class="seat" data-row="B" data-seat="8" data-price="$65.00"></div>
+        </div>
+        <div class="row justify-content-md-center">
+          <div class="seat" data-row="C" data-seat="1" data-price="$60.00"></div>
+          <div class="seat" data-row="C" data-seat="2" data-price="$60.00"></div>
+          <div class="seat" data-row="C" data-seat="3" data-price="$60.00"></div>
+          <div class="seat" data-row="C" data-seat="4" data-price="$60.00"></div>
+          <div class="seat" data-row="C" data-seat="5" data-price="$60.00"></div>
+          <div class="seat" data-row="C" data-seat="6" data-price="$60.00"></div>
+          <div class="seat" data-row="C" data-seat="7" data-price="$60.00"></div>
+          <div class="seat" data-row="C" data-seat="8" data-price="$60.00"></div>
+        </div>
+        <div class="row justify-content-md-center">
+          <div class="seat" data-row="D" data-seat="1" data-price="$55.00"></div>
+          <div class="seat" data-row="D" data-seat="2" data-price="$55.00"></div>
+          <div class="seat" data-row="D" data-seat="3" data-price="$55.00"></div>
+          <div class="seat" data-row="D" data-seat="4" data-price="$55.00"></div>
+          <div class="seat" data-row="D" data-seat="5" data-price="$55.00"></div>
+          <div class="seat" data-row="D" data-seat="6" data-price="$55.00"></div>
+          <div class="seat" data-row="D" data-seat="7" data-price="$55.00"></div>
+          <div class="seat" data-row="D" data-seat="8" data-price="$55.00"></div>
+        </div>
+        <div class="row justify-content-md-center">
+          <div class="seat" data-row="E" data-seat="1" data-price="$50.00"></div>
+          <div class="seat" data-row="E" data-seat="2" data-price="$50.00"></div>
+          <div class="seat" data-row="E" data-seat="3" data-price="$50.00"></div>
+          <div class="seat" data-row="E" data-seat="4" data-price="$50.00"></div>
+          <div class="seat" data-row="E" data-seat="5" data-price="$50.00"></div>
+          <div class="seat" data-row="E" data-seat="6" data-price="$50.00"></div>
+          <div class="seat" data-row="E" data-seat="7" data-price="$50.00"></div>
+          <div class="seat" data-row="E" data-seat="8" data-price="$50.00"></div>
+        </div>
+        <div class="row justify-content-md-center">
+          <div class="seat" data-row="F" data-seat="1" data-price="$45.00"></div>
+          <div class="seat" data-row="F" data-seat="2" data-price="$45.00"></div>
+          <div class="seat" data-row="F" data-seat="3" data-price="$45.00"></div>
+          <div class="seat" data-row="F" data-seat="4" data-price="$45.00"></div>
+          <div class="seat" data-row="F" data-seat="5" data-price="$45.00"></div>
+          <div class="seat" data-row="F" data-seat="6" data-price="$45.00"></div>
+          <div class="seat" data-row="F" data-seat="7" data-price="$45.00"></div>
+          <div class="seat" data-row="F" data-seat="8" data-price="$45.00"></div>
+        </div>
+      
+      <br>
+
+      <p class="seat-text">
+        You have selected <span id="count">0</span> seats.
+      </p>
+    </div>
+  </div>
+
+
+{{!-- COLUMN 2 --}}
+  <div class="col-md-6">
+      <div class="container">
+
+          <h1>Your Selection</h1>
+
+    <div class="selected-seats">
+
+    </div>
+    <div class="initiate-checkout">
+
+    </div>
+
+
+    
+    {{!-- <div class="row">
+    <article class="card ticket fl-left seat-selection">
+       <section class="date-showing">
+        <time>
+          <span class="seat-info-bold">A7</span>
+        </time>
+      </section>
+      <section class="card-cont">
+        <small>SeatBooker Theaters Seating Info</small>
+      <div class="even-seat">
+          <i class="fa fa-star" style="padding-right: 15px"></i>
+          <span class="seat-info">Seat: A7</span>
+      </div>
+        <div class="even-info">
+          <i class="fa fa-dollar"></i>
+          <span class="price-info">$70.00</span>
+        </div>
+      </section>
+    </article>
+    </div> --}}
+
+
+
+  </div>
+  </div>
+
+  {{!-- end of row --}}
+  </div>
+  </div>
+
+  
+<script src="/js/seat.js"></script>
+
+
+
+
