@@ -1,9 +1,8 @@
 const User = require('./User');
 const Production = require('./Production');
 const Showing = require('./Showing');
-const Seat = require('./Seat');
 const Ticket = require('./Ticket');
-const Order = require('./Order');
+const Cart = require('./Cart');
 
 Production.hasMany(Showing, {
   foreignKey: 'production_id',
@@ -13,18 +12,9 @@ Production.hasMany(Showing, {
     foreignKey: 'production_id',
   });
 
-Showing.hasMany(Seat, {
-  foreignKey: 'showing_id',
-});
-
-Seat.belongsTo(Showing, {
-  foreignKey: 'showing_id'
-})
-
 Showing.hasMany(Ticket, {
   foreignKey: 'showing_id',
 });
-
 
 // Ticket
 Ticket.belongsTo(User, {
@@ -35,13 +25,9 @@ Ticket.belongsTo(Showing, {
   foreignKey: 'showing_id'
 });
 
-Ticket.belongsTo(Seat, {
-  foreignKey: 'seat_id'
-});
-
 User.hasMany(Ticket, {
   foreignKey: 'user_id'
 });
 
 
-module.exports = { User, Production, Showing, Seat, Ticket, Order };
+module.exports = { User, Production, Showing, Ticket, Cart };

@@ -1,13 +1,14 @@
 <section class="container">
 <div class="row">
   <div class="col-md-6">
-    <h1>Complete My Purhcase</h1>
-    <div class="card" style="width: 18rem;">
+    <h1>Complete Purhcase</h1>
+    <div class="card">
   <div class="card-body">
     <h5 class="card-title">Time Remaining</h5>
     <div>You cart expires in <span id="cartTimer">{{set_time createdAt}}</span> minutes!</div>
     <br>
-    <a href="#" class="card-link">Complete My Purchase</a>
+    <a href="/profile">
+  <button id="purchase-btn" class="btn btn-primary btn-block">Buy Now! Take My Money!</button>    </a>
   </div>
 </div>
 </div>
@@ -39,7 +40,7 @@
         </div>
       <div class="even-seat">
           <i class="fa fa-star" style="padding-right: 15px"></i>
-          <span>Seat: {{ticket.seat.row}}{{ticket.seat.number}}</span>
+          <span>Seat: {{ticket.row}}{{ticket.number}}</span>
       </div>
         <div class="even-info">
           <i class="fa fa-map-marker"></i>
@@ -75,7 +76,7 @@
     var timer = duration, minutes, seconds;
     setInterval(function () {
         minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10)-1;
+        seconds = parseInt(timer % 60, 10);
 
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
@@ -97,3 +98,5 @@ window.onload = function () {
 };
 
 </script>
+
+<script src="/js/cart.js"></script>

@@ -58,12 +58,12 @@ $(".seat").on('click', function (e) {
 
 
   const info = 
-  `<div id='stub-${id}'>
+  `<div id='stub-${id}' class='stub-info' data-chair='${id}' data-row='${row}' data-seat='${seat}'>
   <div class="row">
   <article class="card ticket fl-left seat-selection">
      <section class="date-showing">
       <time>
-        <span class="row-info">${row}</span><span class="seat-info">${seat}</span>
+        <span class="row-info">${row}${seat}</span>
       </time>
     </section>
     <section class="card-cont">
@@ -91,63 +91,130 @@ var rowArr
 var seatArr
 var priceArr
 
+// Checkout Button Click
 $(".initiate-checkout").on('click', '#checkout-btn', function (e) {
   e.preventDefault();
 
-  const children = $('.selected-seats').children().length
+  chairArr = []
   rowArr = []
   seatArr = []
   priceArr = []
 
-  const row = $('.selected-seats').find('span.seat-info-bold').each(function () {  
-    rowArr.push($(this).text())
-    console.log(rowArr)
+  const chair = $('.selected-seats').find('.stub-info').each(function () {
+    chairArr.push($(this).attr('data-chair'))
+    console.log("chair id", chairArr)
   })
 
-  const seat = $('.selected-seats').find('span.seat-info').each(function () {  
-    seatArr.push($(this).text())
-    console.log(seatArr)
+  const row = $('.selected-seats').find('.stub-info').each(function () {
+    rowArr.push($(this).attr('data-row'))
+    console.log("row data", rowArr)
+  })
+
+  const seat = $('.selected-seats').find('.stub-info').each(function () {
+    seatArr.push($(this).attr('data-seat'))
+    console.log("seat data", seatArr)
   })
 
   const price = $('.selected-seats').find('span.price-info').each(function () {  
     priceArr.push($(this).text())
-    console.log(priceArr)
+    console.log("price data", priceArr)
   })
 
-
+  startCheckout();
 
 });
 
 
-// const startCheckout = async(e) => {
-//   e.preventDefault();
 
 
+const startCheckout = async(e) => {
+  // e.preventDefault();
 
-//   var row = 
-//   var number = 
-//   var price = 
-//   var showing_id = 
+for (var i = 0; i < rowArr.length; i++) {
 
-//   const email = document.getElementById('email-login').value.trim();
-//   const password = document.getElementById('password-login').value.trim();
+  var chair_num = chairArr[i]
+  var row = rowArr[i]
+  var number = seatArr[i]
+  var price = priceArr[i]
+  var showing_id = $('.showing-info').attr('data-id')
+  var user_id = $('.showing-info').attr('data-user')
+  var in_cart = true
+  var purchased = false
+  
+      const response = await fetch('/api/ticket', {
+          method: 'POST',
+          body: JSON.stringify({chair_num, row, number, price, showing_id, user_id, in_cart, purchased}), 
+          headers: {'Content-Type': 'application/json'}
+      });
+
+      // console.log("response id", response.id)
+
+      if (response.ok) {
+          document.location.replace('/cart')
+      }
+    }
+};
 
 
-//       const response = await fetch('/api/seat', {
-//           method: 'POST',
-//           body: JSON.stringify({row, number, price, showing_id}), 
-//           headers: {'Content-Type': 'application/json'}
-//       })
+// AJAX QUERY
+occupiedSeats();
 
+function occupiedSeats() {
 
+  var queryURL = "http://localhost:3001/api/ticket"
 
+  $.ajax({
+      url : queryURL,
+      method : "GET"
+  }).then(function(response){
 
-//       // if (response.ok) {
-//       //     document.location.replace('/profile')
-//       // }
+    showing_id = $('.showing-info').attr('data-id')
+
+    for (var i = 0; i < response.length; i++) {
+      var res_id = response[i].showing_id
+
+      if (res_id == showing_id) {
+
+      console.log("showing id test", response[i].chair_num)
+
+        var chair = response[i].chair_num;
+        $("#"+chair).attr('class', 'seat occupied')
+
+      }
+
+    }
+    });
+
+};
+
+// seatId();
+
+// function seatId() {
+
+//   var queryURL = "http://localhost:3001/api/ticket"
+
+//   $.ajax({
+//       url : queryURL,
+//       method : "GET"
+//   }).then(function(response){
+
+//     console.log(response)
+//     showing_id = $('.showing-info').attr('data-id')
+
+//     for (var i = 0; i < response.length; i++) {
+//       var res_id = response[i].showing_id
+
+//       if (res_id == showing_id) {
+
+//       console.log("showing id test", response[i].chair_num)
+
+//         var chair = response[i].chair_num;
+//         $("#"+chair).attr('class', 'seat occupied')
+
+//       }
+
+//     }
+//     });
+
 // };
-
-// document
-//   .getElementById('login-btn')
-//   .addEventListener('click', loginFormHandler)
 

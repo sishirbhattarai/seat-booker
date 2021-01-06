@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { response } = require('express');
-const {User, Ticket, Seat, Showing, Production} = require('../../models');
+const {User, Ticket, Showing, Production} = require('../../models');
 // const withAuth = require('../../utils/auth')
 
 router.get('/', async (req, res) => {
@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
       const productionData = await Production.findAll({
         include: [{
           model: Showing,
-          include: [Seat, Ticket]
+          include: [Ticket]
         }],
       });
   
@@ -23,7 +23,7 @@ router.get('/:id', async (req, res) => {
     const productionData = await Production.findByPk(req.params.id, {
       include: [{
         model: Showing,
-        include: [Seat, Ticket]
+        include: [Ticket]
       }],
     });
     res.status(200).json(productionData)

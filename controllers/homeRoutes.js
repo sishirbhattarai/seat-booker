@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Production, Showing, Seat, Ticket, User } = require('../models');
+const { Production, Showing, Ticket, User } = require('../models');
 // const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -7,7 +7,30 @@ router.get('/', async (req, res) => {
     const productionData = await Production.findAll({
       include: [{
         model: Showing,
-        include: [Seat, Ticket]
+        include: [Ticket]
+      }],
+    });
+    console.log("production data", productionData)
+    // const production = productionData.get({ plain: true });
+    
+
+    res.render('homepage', { 
+      productionData, 
+      logged_in: req.session.logged_in 
+    });
+
+    // res.status(200).json(productionData)
+  } catch (err) {
+    res.status(500).json(err)
+  }  
+});
+
+router.get('/production', async (req, res) => {
+  try {
+    const productionData = await Production.findAll({
+      include: [{
+        model: Showing,
+        include: [Ticket]
       }],
     });
     console.log("production data", productionData)
@@ -25,26 +48,12 @@ router.get('/', async (req, res) => {
   }  
 });
 
-// router.get('/production/:id', async (req, res) => {
-//   try {
-//     const productionData = await Production.findByPk(req.params.id, {
-//       include: [{
-//         model: Showing,
-//         include: [Seat, Ticket]
-//       }]
-//     })
-//     res.status(200).json(productionData)
-//   } catch (err) {
-//     res.status(500).json(err)
-//   }
-// });
-
 router.get('/production/:id', async (req, res) => {
   try {
     const productionData = await Production.findByPk(req.params.id, {
       include: [{
         model: Showing,
-        include: [Seat, Ticket]
+        include: [Ticket]
       }],
     });
     
@@ -66,16 +75,21 @@ router.get('/showing/:id', async (req, res) => {
     const showingData = await Showing.findByPk(req.params.id, {
       include: [{
         model: Production,
-        // include: [Seat, Ticket]
       }],
     });
-    
     const showing = showingData.get({ plain: true });
+
+
+    const userData = await User.findOne({
+      where: { id: req.session.user_id }
+    });
+    const user = userData.get({ plain: true });
 
     console.log(showing)
 
     res.render('seat', { 
-      ...showing, 
+      ...showing,
+      user: user.id, 
       logged_in: req.session.logged_in 
     });
   } catch (err) {
@@ -88,7 +102,7 @@ router.get('/profile', async (req, res) => {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ["password"] },
       include: [{model: Ticket,
-        include: [Seat, {model: Showing, include: Production}]
+        include: [{model: Showing, include: Production}]
       }],
     });
     
@@ -112,7 +126,7 @@ router.get('/cart', async (req, res) => {
         exclude: ["password"]
       },
       include: [{model: Ticket,
-        include: [Seat, {model: Showing, include: Production}]
+        include: [{model: Showing, include: Production}]
       }],
     }); 
 
@@ -121,7 +135,6 @@ router.get('/cart', async (req, res) => {
       where: { user_id: req.session.user_id },
       order: [ [ 'createdAt', 'DESC' ]],
     });
-    // await oldestCartItem();
 
     const user = userData.get({ plain: true })
 
@@ -134,6 +147,35 @@ router.get('/cart', async (req, res) => {
     res.status(500).json(err)
   }
 });
+
+router.get('/checkout', async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: {
+        exclude: ["password"]
+      },
+      include: [{model: Ticket,
+        include: [{model: Showing, include: Production}]
+      }],
+    }); 
+
+    const data = await Ticket.findOne({
+      where: { user_id: req.session.user_id },
+      order: [ [ 'createdAt', 'DESC' ]],
+    });
+
+    const user = userData.get({ plain: true })
+
+    res.render('checkout', {
+      ...user,
+      createdAt: data.createdAt,
+      logged_in: true,
+    })
+  } catch (err) {
+    res.status(500).json(err)
+  }
+});
+
 
 
 router.get('/test', async (req, res) => {
