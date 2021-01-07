@@ -1,0 +1,17 @@
+<section class="container">
+
+<div class="row">
+{{#each productionData as |production|}}
+
+  <div class="column">
+    {{!-- <h1>{{dataValues.title}}</h1> --}}
+
+      <a id="showingLink" href="/production/{{dataValues.id}}">
+      <img src="{{dataValues.img}}" data-id="{{dataValues.id}}">
+      <p id="productionInfo">{{dataValues.startDate}} - {{dataValues.endDate}}</p>
+      </a>
+  </div>
+{{/each}}
+</div>
+
+{{!-- <script src="./js/production.js"></script> --}}

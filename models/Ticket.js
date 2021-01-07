@@ -12,11 +12,23 @@ Ticket.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    user_id: {
+    chair_num: {
       type: DataTypes.INTEGER,
-      references: {
-        model: 'user',
-        key: 'id'
+      allowNull: false,
+    },
+    row: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    number: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    price: {
+      type: DataTypes.DECIMAL(10,2),
+      allowNull: false,
+      validate: {
+        isDecimal: true,
       }
     },
     showing_id: {
@@ -26,10 +38,10 @@ Ticket.init(
         key: 'id'
       }
     },
-    seat_id: {
+    user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'seat',
+        model: 'user',
         key: 'id'
       }
     },
@@ -45,12 +57,12 @@ Ticket.init(
     },
   },
   {
-    sequelize,
-    timestamps: false,
-    freezeTableName: true,
-    underscored: true,
-    modelName: 'ticket',
-  }
+      sequelize,
+      timestamps: true,
+      freezeTableName: true,
+      underscored: true,
+      modelName: 'ticket',
+    }
 );
 
 module.exports = Ticket;

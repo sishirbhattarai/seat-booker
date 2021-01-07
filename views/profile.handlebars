@@ -1,0 +1,64 @@
+<section class="container">
+<div class="row">
+  <div class="col-md-6">
+    <h1>Welcome, {{name}}!</h1>
+    <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Your Info</h5>
+    <p class="card-text"><b>Name: </b>{{name}}</p>
+    <p class="card-text"><b>Email: </b>{{email}}</p>
+    <a href="#" class="card-link">Update My Info</a>
+  </div>
+</div>
+</div>
+
+{{#if tickets.length}}
+
+  <div class="col-md-6">
+  <h1>Your Tickets</h1>
+
+{{#each tickets as |ticket|}}
+{{#if ticket.purchased}}
+
+<div class="row">
+    <article class="card ticket fl-left">
+      <section class="date">
+        <time datetime={{ticket.showing.time}}>
+          <span>{{ticket.showing.day}}</span><span>{{ticket.showing.month}}</span>
+        </time>
+      </section>
+      <section class="card-cont">
+        <small>SeatBooker Theaters Presents</small>
+        <h3>{{ticket.showing.production.title}}</h3>
+        <div class="even-date">
+         <i class="fa fa-calendar"></i>
+         <time>
+           <span>{{ticket.showing.date}}</span>
+           <span>{{ticket.showing.startTime}} to {{ticket.showing.endTime}}</span>
+         </time>
+        </div>
+      <div class="even-seat">
+          <i class="fa fa-star" style="padding-right: 15px"></i>
+          <span>Seat: {{ticket.row}}{{ticket.number}}</span>
+      </div>
+        <div class="even-info">
+          <i class="fa fa-map-marker"></i>
+          <p>
+            The Seatbooker Theater 9900 S Monroe St, Sandy, UT 84070
+          </p>
+        </div>
+        <a href="#">tickets</a>
+      </section>
+    </article>
+  </div>
+  {{/if}}
+  {{/each}}
+  
+  {{!-- End of ticket columns --}}
+  </div>
+  {{!-- End of main row--}}
+  </div> 
+</div>
+{{/if}}
+
+<script src="./js/profile.js"></script>

@@ -5,8 +5,8 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 
-
 const sequelize = require('./config/connection');
+const seedTickets = require('./seeds/ticket-seeds');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
@@ -14,6 +14,12 @@ const PORT = process.env.PORT || 3001;
 
 // Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({ helpers });
+
+hbs.handlebars.registerHelper("purchasedTickets", function (a) {
+  if (a) {
+    return true;
+  }
+});
 
 const sess = {
   secret: 'Super secret secret',

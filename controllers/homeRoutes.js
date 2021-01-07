@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Production, Showing, Seat, Ticket, User, Cart } = require('../models');
+const { Production, Showing, Ticket, User } = require('../models');
 // const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -7,10 +7,42 @@ router.get('/', async (req, res) => {
     const productionData = await Production.findAll({
       include: [{
         model: Showing,
-        include: [Seat, Ticket]
-      }]
-    })
-    res.status(200).json(productionData)
+        include: [Ticket]
+      }],
+    });
+    console.log("production data", productionData)
+    // const production = productionData.get({ plain: true });
+    
+
+    res.render('homepage', { 
+      productionData, 
+      logged_in: req.session.logged_in 
+    });
+
+    // res.status(200).json(productionData)
+  } catch (err) {
+    res.status(500).json(err)
+  }  
+});
+
+router.get('/production', async (req, res) => {
+  try {
+    const productionData = await Production.findAll({
+      include: [{
+        model: Showing,
+        include: [Ticket]
+      }],
+    });
+    console.log("production data", productionData)
+    // const production = productionData.get({ plain: true });
+    
+
+    res.render('production', { 
+      productionData, 
+      logged_in: req.session.logged_in 
+    });
+
+    // res.status(200).json(productionData)
   } catch (err) {
     res.status(500).json(err)
   }  
@@ -21,10 +53,45 @@ router.get('/production/:id', async (req, res) => {
     const productionData = await Production.findByPk(req.params.id, {
       include: [{
         model: Showing,
-        include: [Seat, Ticket]
-      }]
-    })
-    res.status(200).json(productionData)
+        include: [Ticket]
+      }],
+    });
+    
+    const production = productionData.get({ plain: true });
+
+    console.log(production)
+
+    res.render('showing', { 
+      ...production, 
+      logged_in: req.session.logged_in 
+    });
+  } catch (err) {
+    res.status(500).json(err)
+  }
+});
+
+router.get('/showing/:id', async (req, res) => {
+  try {
+    const showingData = await Showing.findByPk(req.params.id, {
+      include: [{
+        model: Production,
+      }],
+    });
+    const showing = showingData.get({ plain: true });
+
+
+    const userData = await User.findOne({
+      where: { id: req.session.user_id }
+    });
+    const user = userData.get({ plain: true });
+
+    console.log(showing)
+
+    res.render('seat', { 
+      ...showing,
+      user: user.id, 
+      logged_in: req.session.logged_in 
+    });
   } catch (err) {
     res.status(500).json(err)
   }
@@ -33,13 +100,15 @@ router.get('/production/:id', async (req, res) => {
 router.get('/profile', async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
-      attributes: {
-        exclude: ["password"]
-      },
-      include: [{
-        model: Ticket
+      attributes: { exclude: ["password"] },
+      include: [{model: Ticket,
+        include: [{model: Showing, include: Production}]
       }],
-    }) 
+    });
+    
+    // console.log("user data", userData);
+    const user = userData.get({ plain: true });
+
     res.render('profile', {
       ...user,
       logged_in: true
@@ -49,22 +118,73 @@ router.get('/profile', async (req, res) => {
   }
 });
 
+
 router.get('/cart', async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: {
         exclude: ["password"]
       },
-      include: [{
-        model: Cart,
-        include: Ticket,
-        include: [Seat, {model: Showing, include: Production}]
-    }],
-    }) 
+      include: [{model: Ticket,
+        include: [{model: Showing, include: Production}]
+      }],
+    }); 
+
+
+    const data = await Ticket.findOne({
+      where: { user_id: req.session.user_id },
+      order: [ [ 'createdAt', 'DESC' ]],
+    });
+
+    const user = userData.get({ plain: true })
+
     res.render('cart', {
       ...user,
-      logged_in: true
+      createdAt: data.createdAt,
+      logged_in: true,
     })
+  } catch (err) {
+    res.status(500).json(err)
+  }
+});
+
+router.get('/checkout', async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: {
+        exclude: ["password"]
+      },
+      include: [{model: Ticket,
+        include: [{model: Showing, include: Production}]
+      }],
+    }); 
+
+    const data = await Ticket.findOne({
+      where: { user_id: req.session.user_id },
+      order: [ [ 'createdAt', 'DESC' ]],
+    });
+
+    const user = userData.get({ plain: true })
+
+    res.render('checkout', {
+      ...user,
+      createdAt: data.createdAt,
+      logged_in: true,
+    })
+  } catch (err) {
+    res.status(500).json(err)
+  }
+});
+
+
+
+router.get('/test', async (req, res) => {
+  try {
+    const data = await Ticket.findOne({
+    where: { user_id: req.session.user_id },
+    order: [ [ 'createdAt', 'DESC' ]],
+    });
+    res.json(data.createdAt)
   } catch (err) {
     res.status(500).json(err)
   }

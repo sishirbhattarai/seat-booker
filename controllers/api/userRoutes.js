@@ -1,14 +1,14 @@
 const router = require('express').Router();
 const { response } = require('express');
-const {User, Ticket, Seat, Showing, Production} = require('../../models');
+const {User, Ticket, Showing, Production} = require('../../models');
 // const withAuth = require('../../utils/auth')
 
 router.get('/', async (req, res) => {
     try {
         const userData = await User.findAll({
             include: [{
-                model: Ticket,
-                include: [Seat, {model: Showing, include: Production}]
+                model: Ticket, 
+                include: [{model: Showing, include: Production}]
             }]
         })
         res.status(200).json(userData);
@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
         const userData = await User.findByPk(req.params.id, {
             include: [{
                 model: Ticket,
-                include: [Seat, {model: Showing, include: Production}]
+                include: [{model: Showing, include: Production}]
             }]
         })
         res.status(200).json(userData);

@@ -1,10 +1,14 @@
+// Create a table that keeps a record of all orders
+// Can use node cron as a timer to check carts every min (npm)
+// Can use a QR code generator (npm)
+
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-class Cart extends Model {}
+class Order extends Model {}
 
-Cart.init(
+Order.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -25,8 +29,14 @@ Cart.init(
     timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: 'cart',
+    modelName: 'order',
   }
 );
 
-module.exports = Cart;
+module.exports = Order;
+
+
+
+
+
+
