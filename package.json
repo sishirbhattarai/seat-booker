@@ -1,12 +1,12 @@
 {
   "name": "seat-booker",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
     "seed": "node seeds/seed.js",
-    "watch": "nodemon server.js"
+    "watch": "nodemon server.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -35,5 +35,6 @@
   "homepage": "https://github.com/Valborg1/seat-booker#readme",
   "devDependencies": {
     "eslint": "^7.15.0"
-  }
+  },
+  "description": ""
 }
