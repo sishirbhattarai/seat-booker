@@ -161,7 +161,7 @@ occupiedSeats();
 
 function occupiedSeats() {
 
-  var queryURL = "https://seat-booker.herokuapp.com/api/ticket"
+  var queryURL = "localhost:3001/api/ticket"
 
   $.ajax({
       url : queryURL,
