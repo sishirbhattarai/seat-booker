@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Production, Showing, Ticket, User } = require('../models');
-// const withAuth = require('../utils/auth');
+const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
@@ -48,7 +48,7 @@ router.get('/production', async (req, res) => {
   }  
 });
 
-router.get('/production/:id', async (req, res) => {
+router.get('/production/:id', withAuth, async (req, res) => {
   try {
     const productionData = await Production.findByPk(req.params.id, {
       include: [{
@@ -70,7 +70,7 @@ router.get('/production/:id', async (req, res) => {
   }
 });
 
-router.get('/showing/:id', async (req, res) => {
+router.get('/showing/:id', withAuth, async (req, res) => {
   try {
     const showingData = await Showing.findByPk(req.params.id, {
       include: [{

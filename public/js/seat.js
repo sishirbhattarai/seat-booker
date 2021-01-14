@@ -161,7 +161,7 @@ occupiedSeats();
 
 function occupiedSeats() {
 
-  var queryURL = "localhost:3001/api/ticket"
+  var queryURL = "http://localhost:3001/api/ticket"
 
   $.ajax({
       url : queryURL,
